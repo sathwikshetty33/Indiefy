@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Products</title>
+    <style>
+        /* Reset and base styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Aclonica, Arial, sans-serif;
+            background-color: #E1CBAA;
+            color: #4a2f2a;
+            line-height: 1.6;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #d9b7a7;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            color: #78181B;
+            margin-right: 20px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .add-product-btn {
+            background-color: #78181B;
+            color: white;
+        }
+
+        .add-product-btn:hover {
+            background-color: #933;
+            transform: translateY(-3px);
+        }
+
+        .back-link {
+            background-color: #c8af91;
+            color: #4a2f2a;
+        }
+
+        .back-link:hover {
+            background-color: #b39c7d;
+            transform: translateY(-3px);
+        }
+
+        /* Product grid styles */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #c8af91;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image-container {
+            position: relative;
+            padding-top: 75%; /* 4:3 Aspect Ratio */
+            overflow: hidden;
+        }
+
+        .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4a2f2a;
+        }
+
+        .product-category {
+            color: #78181B;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #933;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px 15px;
+        }
+
+        .edit-btn, .stock-toggle {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 14px;
+        }
+
+        .edit-btn {
+            background-color: #78181B;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #933;
+            transform: translateY(-3px);
+        }
+
+        .stock-toggle {
+            background-color: #4a2f2a;
+            color: white;
+        }
+
+        .stock-toggle:hover {
+            background-color: #6b4c45;
+            transform: translateY(-3px);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #E1CBAA;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #78181B;
+            width: 300px;
+            max-width: 90%;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .modal-content button {
+            margin: 10px 5px 0;
+            padding: 8px 16px;
+            background-color: #78181B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .modal-content button:hover {
+            background-color: #933;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-buttons {
+                margin-top: 10px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>My Products</h1>
+            <div class="header-buttons">
+                <a href="{% url 'addproducts' %}" class="btn add-product-btn">Add New Product</a>
+                <a href="{% url 'dashboard' %}" class="btn back-link" onclick="goToDashboard()">Back to Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-grid">
+            {% for i in obj %}
+            <div class="product-card" data-product-id="{{ i.id }}">
+                <div class="product-image-container">
+                    <img src="{{ i.image.url }}" alt="{{ i.name }}" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">{{ i.name }}</h2>
+                    <p class="product-category">{{ i.sub_state }}</p>
+                    <p class="product-category">{{ i.product_type }}</p>
+                    <p class="product-price">${{ i.price }}</p>
+                </div>
+                <div class="button-container">
+                    <button onclick="editProduct({{ i.id }})" class="edit-btn">Edit</button>
+                    <button onclick="toggleStock({{ i.id }})" class="stock-toggle">
+                        {% if i.stock %}In Stock{% else %}Out of Stock{% endif %}
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="stockModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to change the stock status?</p>
+            <button id="confirmButton" class="btn add-product-btn">Confirm</button>
+            <button onclick="closeModal()" class="btn back-link">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let currentProductId;
+
+        function editProduct(productId) {
+            console.log('Editing product:', productId);
+            // Implement your edit functionality here
+        }
+
+        function toggleStock(productId) {
+            currentProductId = productId;
+            document.getElementById('stockModal').style.display = 'block';
+        }
+
+        document.getElementById('confirmButton').onclick = function() {
+            if (currentProductId) {
+                // Redirect to the stocks URL
+                window.location.href = "{% url 'stocks' '0' %}".replace('0', currentProductId);
+            }
+        };
+
+        function closeModal() {
+            document.getElementById('stockModal').style.display = 'none';
+        }
+
+        function goToDashboard() {
+            console.log('Navigating to dashboard');
+            // Implement your dashboard navigation here
+            // window.location.href = '/dashboard'; // Uncomment and adjust as needed
+        }
+    </script>
+</body>
+</html>

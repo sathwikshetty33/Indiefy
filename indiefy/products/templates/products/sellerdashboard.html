@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dashboard</title>
+    <link rel="stylesheet" href="{% static 'sellerdashboard.css' %}">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                {{user2.user.username}}'s Dashboard
+            </div>
+            <div class="nav-links">
+
+
+                <a href="settings.html">Settings</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <div class="dashboard-item">
+                 <a href="{% url 'products' %}" style="text-decoration: none;">
+                <h2>Add or Update items</h2>
+                <p>Manage and review your products.</p></a>
+            </div>
+            <div class="dashboard-item">
+
+                <a href="{% url 'sellerdetails' %}" style="text-decoration: none;">
+    <h2>Manage Profile</h2>
+    <p>Update your personal information and expertise.</p></a>
+                </div>
+
+            <div class="dashboard-item">
+<a href="{% url 'sorders' %}" style="text-decoration: none;">
+                <h2>View orders</h2>
+                <p>Check the list of orders.</p></a>
+            </div>
+            <div class="dashboard-item">
+
+                <h2>History</h2>
+                <p>Review your past transactions and orders history.</p>
+            </div>
+            <div class="dashboard-item">
+
+                <h2>Track your visibility and  growth</h2>
+                <p>Discover the intrests of people towards your products.</p>
+            </div>
+            <div class="dashboard-item">
+
+                <h2>Customer Reviews</h2>
+                <p>Explore the reivews of the customers towards your product.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Indeify</p>
+    </footer>
+</body>
+</html>

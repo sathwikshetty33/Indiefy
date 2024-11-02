@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Indiefy - Go Desi - Registration</title>
+    <style>
+        .gradient-custom-2 {
+            background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+        }
+        .gradient-form {
+            background-color: #eee;
+        }
+        .btn-primary {
+            background-color: #78181B !important;
+            border-color: #78181B !important;
+        }
+        .btn-primary:hover {
+            background-color: #5a1315 !important;
+            border-color: #5a1315 !important;
+        }
+        .text-primary {
+            color: #78181B !important;
+        }
+        .form-divider {
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        .seller-login {
+            margin-top: 20px;
+        }
+        .seller-login a {
+            color: #78181B;
+            text-decoration: none;
+        }
+        .seller-login i {
+            margin-right: 5px;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <section class="h-100 gradient-form">
+        <div class="container py-3 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-4 mx-md-3">
+                                    <div class="text-center">
+                                        <img src="/api/placeholder/200/100" alt="logo">
+                                        <h4 class="mt-1 mb-4 pb-1">We are Indiefy Team</h4>
+                                    </div>
+
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        {% for field in form %}
+                                            <div class="form-outline mb-4">
+                                                {{ field }}
+                                                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                                {% if field.errors %}
+                                                    {% for error in field.errors %}
+                                                        <div class="error-message">{{ error }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+
+                                        <div class="text-center pt-1 mb-4 pb-1">
+                                            <button class="btn btn-primary btn-block" type="submit">
+                                                Create account
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <div class="text-center">
+                                        <p class="mb-0">Already have an account?
+                                            <a href="{% url 'login' %}" class="text-primary fw-bold">Sign In</a>
+                                        </p>
+                                    </div>
+
+                                    <div class="form-divider"></div>
+
+                                    <div class="text-center seller-login">
+                                        <a href="{% url 'slogin2' %}">
+                                            <i class="fas fa-store"></i>
+                                            Login as seller
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                <div class="text-white px-3 py-4 p-md-4 mx-md-3">
+                                    <h4 class="mb-3"></h4>
+                                    <p class="small mb-0"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

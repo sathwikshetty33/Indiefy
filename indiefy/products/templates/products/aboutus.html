@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indiefy - Go Desi</title>
+    <link rel="stylesheet" href="{% static  'about.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #78181B;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                z-index: 100;
+            }
+
+            .navbar nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 250px;
+                background-color: #C89B9B;
+                transition: 0.3s;
+                padding: 80px 20px;
+            }
+
+            .navbar nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+        }
+</style>
+</head>
+<body style="background-image: url('{% static 'aboutusbg.jpg'%}');">
+     <header style="background-color: #C89B9B;">
+        <div class="navbar">
+              <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo">
+                <img id="logo1" src="{% static 'logo.png' %}" alt="Indiefy Logo" class="logo-img">
+                <span><b style="color: #78181B;">Indiefy</b></span>
+            </div>
+
+
+
+            <nav>
+                <ul>
+                    <li><a href="{%url 'aboutus'%}">About Us</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'blog' %}">Blog</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div id="google_translate_element"></div>
+
+            <div class="icons">
+                <a href="{% url 'logout' %}"><i class="fa-solid fa-user"></i></a>
+                <a href="{% url 'cartdetails' %}" style="margin-left: 20px;"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section" style="background-image: url('{% static 'aboutusbg.jpg'%}');" >
+        <div class="about-container">
+            <div class="about-content">
+                <h1>About Us</h1>
+                
+                <!-- First row: Image on left, text on right -->
+                <div class="content-row">
+                    <div class="image-container">
+                        <img src="{% static 'aboutus1.jpg' %}" alt="Peacock Image">
+                    </div>
+                    <div class="text-container">
+                        <p>
+                            <b>Indiefy: Rooted in Tradition, Blossoming with Artistry.</b><br>
+
+Just like a tree stands tall and beautiful through all its seasons—whether in full bloom or shedding its leaves—what holds it steady is its roots. For a country as vast and diverse as India, the strength of its roots lies in its rich culture and heritage, which have withstood the tests of time, providing a foundation through every storm and sunshine.
+
+While modernity has transformed many aspects of our lives—from traditional dhotis to denim jeans, from exquisite Pattachitra paintings to iPad digital art, and from earthen pots to high-tech gadgets—the heart of India still beats in the craftsmanship and livelihood of those who never let go of their cultural identity.
+
+In a world where connections are made through routers, Indiefy seeks to connect you to something deeper: the roots of India. This mission is what gave birth to our passionate team, The Rooters, as we dig even deeper to unearth the beauty and authenticity of India’s artisans.
+
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Second row: Text on left, image on right -->
+                <div class="content-row reverse">
+                    <div class="text-container">
+                        <p>
+                            The artisans we work with are not part of large, well-known production houses. Instead, we collaborate with the street-side craftsmen—those whose talents are often overlooked, whose dedication to their craft remains unwavering. Indiefy serves as the bridge between these remarkable artisans and you, their global audience. Whether they are your neighbors or live miles away in distant regions, we bring their creations right to your doorstep. Some may not even appear on Google Maps, having neither a formal shop nor a digital presence—but through Indiefy, their talents are showcased and celebrated.
+
+With the valuable support of NGOs and local communities, we’ve reached the hidden corners of cities and villages, discovering artisans eager to share their work with the world. Our state-wise filter allows you to explore the unique heritage of each region, offering a glimpse into the exclusive traditions that are deeply rooted in the culture of each state.
+
+Every product you purchase through Indiefy makes a real difference in an artisan’s life, and we’re committed to showing you the impact of your contribution. Our blogs share not only the journeys and challenges these artisans face but also the incredible work our partner NGOs and volunteers are doing to uplift them. And with our regional language options, you can discover and celebrate your heritage in your own language, no matter where you are in the world.
+                        </p>
+                    </div>
+                    <div class="image-container">
+                        <img src="{% static 'aboutus2.jpg' %}" alt="Village Image" style="background-image: url('{% static 'aboutusbg.jpg'%}');">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div ></div>
+        
+    <div class="credit-container"  style="background-image: url('{% static 'aboutusbg.jpg'%}');">
+        <p style="text-align: center;">
+            <strong>The Rooters</strong>
+        </p>
+
+        <div class="image-gallery">
+            <!-- First row -->
+            <div class="row" style="display: flex; justify-content: space-around; margin-top: 10px;">
+                <div class="team-member">
+                    <img src="{%  static 'sathwik.jpg' %}" alt="Team Member 1"  />
+                    <p class="name">Sathwik Shetty</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static  'jaya.jpg' %}" alt="Team Member 2" />
+                    <p class="name">Jaya Siddartha</p>
+                </div>
+                <div class="team-member">
+                    <img src="./indie/banjara.jpg" alt="Team Member 3" />
+                    <p class="name">Madhan Kumar R</p>
+                </div>
+            </div>
+            <!-- Second row -->
+            <div class="row" style="display: flex; justify-content: space-around; margin-top: 10px; margin-bottom: 10px;">
+                <div class="team-member">
+                    <img src="./indie/banjara.jpg" alt="Team Member 4" />
+                    <p class="name">Abhishek  vishwanath</p>
+                </div>
+                <div class="team-member">
+                    <img src="./indie/banjara.jpg" alt="Team Member 5" />
+                    <p class="name">Neha P N</p>
+                </div>
+                <div class="team-member">
+                    <img src="./indie/banjara.jpg" alt="Team Member 6" />
+                    <p class="name">Abhinand Prameesh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Indiefy. All Rights Reserved.</p>
+    </footer>
+<script>
+     const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+<script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'hi,bn,te,mr,ta,ur,gu,ml,kn,pa,or,as,ma,sat,bh',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <style>
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eee;
+            margin: 0;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        h1 {
+            color: #8c2e39;
+            animation: fadeInDown 1s ease-out;
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInCard 1s ease-out;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideInLeft 1s ease-out;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .image-upload {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            border: 1px dashed #d1d5db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #8c2e39;
+            color: white;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+        .submit-btn:hover {
+            background-color: #6d232c;
+        }
+        .gradient-custom-2 {
+            background-image: url('./indie/loginbg1.jpg');
+            background-size: cover;
+        }
+        @media (max-width: 768px) {
+            .form-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-custom-2">
+    <div class="container">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Add New Product</h1>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <input type="text" id="product-name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-des" name="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-category">Category</label>
+                    <select id="product-category" name="cat" required>
+                        <option value="">Select a category</option>
+                        {% for j in category %}
+                        <option value="{{ j.name }}">{{ j.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-substate">Substate</label>
+                    <select id="product-substate" name="sub" required>
+                        <option value="">Select a substate</option>
+                        {% for i in sub %}
+                        <option value="{{ i.name }}">{{ i.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-price">Price</label>
+                    <input type="number" id="product-price" name="price" step="0.01" required pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-images">Product Images</label>
+                    <input type="file" id="product-images" name="images" multiple accept="image/*" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Add Product</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

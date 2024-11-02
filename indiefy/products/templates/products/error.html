@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Already Exists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .error-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #db2777;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .login-btn {
+            background-color: #ec4899;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .login-btn:hover {
+            background-color: #db2777;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Oops! User Already Exists</h1>
+        <p>It looks like an account with this email address already exists in our system. If this is your account, please log in instead.</p>
+        <a href="{% url 'slogin2' %}" class="login-btn">Log In</a>
+    </div>
+</body>
+</html
